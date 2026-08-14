@@ -14,6 +14,7 @@
             --accent-purple: #818cf8;
             --accent-green: #34d399;
             --accent-amber: #fbbf24;
+            --accent-rose: #f43f5e;
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
             --glass-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
@@ -84,7 +85,6 @@
             color: var(--text-muted);
         }
 
-        /* QUICK STATS & DOCS VAULT */
         .section-title {
             font-size: 1rem;
             font-weight: 700;
@@ -128,6 +128,7 @@
         .btn-group {
             display: flex;
             gap: 6px;
+            flex-wrap: wrap;
         }
 
         .btn-action {
@@ -154,8 +155,33 @@
             border: 1px solid rgba(129, 140, 248, 0.3);
         }
 
+        .btn-ticket {
+            background: rgba(244, 63, 94, 0.15);
+            color: var(--accent-rose);
+            border: 1px solid rgba(244, 63, 94, 0.3);
+        }
+
         .btn-action:active {
             transform: scale(0.96);
+        }
+
+        /* TICKET PREP BOX */
+        .ticket-box {
+            background: rgba(244, 63, 94, 0.08);
+            border: 1px solid rgba(244, 63, 94, 0.25);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 20px;
+            font-size: 0.82rem;
+            color: #fecdd3;
+            line-height: 1.4;
+        }
+
+        .ticket-box strong {
+            color: var(--accent-rose);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.88rem;
         }
 
         /* TRANSIT TIPS BOX */
@@ -346,8 +372,17 @@
         <div class="traveler-tag">👤 Abhishek Gupta | 📅 15 – 23 August 2026</div>
     </header>
 
-    <!-- DOCUMENTS VAULT -->
-    <div class="section-title">📂 Document Vault</div>
+    <!-- TICKETS & RESERVATIONS STATUS -->
+    <div class="ticket-box">
+        <strong>🎟️ Booking Status Summary</strong>
+        • <strong>Horizon 22 (Free):</strong> Mandatory timed ticket required. Free slots drop every Monday at 10 AM BST.<br>
+        • <strong>London Eye (Paid):</strong> Highly recommended to pre-book timed ticket to skip 45+ min queues.<br>
+        • <strong>Thames Cruise:</strong> Tap & Go with IDFC WOW Card (No reservation needed).<br>
+        • <strong>Dishoom Shoreditch:</strong> Walk-ins only for small groups (short chai queue).
+    </div>
+
+    <!-- DOCUMENTS & BOOKING VAULT -->
+    <div class="section-title">📂 Document Vault & Booking Links</div>
     <div class="doc-vault">
         
         <!-- MASTER MERGED PDF -->
@@ -356,7 +391,43 @@
                 <h3>📄 Master Travel PDF</h3>
                 <p>All Tickets & Booking Receipts</p>
             </div>
-            <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">View All PDF Docs</a>
+            <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">View PDF Docs</a>
+        </div>
+
+        <!-- HORIZON 22 TICKET LINK -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🌇 Horizon 22 (Tue, 18 Aug)</h3>
+                <p>Mandatory Free Entry Pass</p>
+            </div>
+            <a href="https://horizon22.co.uk/" target="_blank" class="btn-action btn-ticket">🎟️ Book Free Slot</a>
+        </div>
+
+        <!-- LONDON EYE TICKET LINK -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🎡 London Eye (Mon, 17 Aug)</h3>
+                <p>Timed Standard Entry Ticket</p>
+            </div>
+            <a href="https://www.londoneye.com/tickets-and-prices/" target="_blank" class="btn-action btn-ticket">🎟️ Buy Ticket</a>
+        </div>
+
+        <!-- TOWER OF LONDON (OPTIONAL) -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🏰 Tower of London (Optional)</h3>
+                <p>Crown Jewels Entry Pass</p>
+            </div>
+            <a href="https://www.hrp.org.uk/tower-of-london/visit/tickets-and-prices/" target="_blank" class="btn-action btn-ticket">🎟️ Buy Ticket</a>
+        </div>
+
+        <!-- ROYAL OBSERVATORY (OPTIONAL) -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🧭 Royal Observatory Greenwich</h3>
+                <p>Prime Meridian Line (GMT 0°)</p>
+            </div>
+            <a href="https://www.rmg.co.uk/royal-observatory" target="_blank" class="btn-action btn-ticket">🎟️ Buy Ticket</a>
         </div>
 
         <!-- FLIGHTS -->
@@ -364,7 +435,6 @@
             <div class="doc-info">
                 <h3>✈️ Gulf Air Flights</h3>
                 <p>PNR: <strong>KBFQXS</strong> | Ref: EMT168795171</p>
-                <p>BLR ↔ BAH ↔ LHR (Veg Meals Confirmed)</p>
             </div>
             <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">Flight PDF</a>
         </div>
@@ -373,7 +443,7 @@
         <div class="doc-card">
             <div class="doc-info">
                 <h3>🏨 Leg 1: The Corner City</h3>
-                <p>16–18 Aug (2 Nights) | ID: <strong>2039766985</strong></p>
+                <p>16–18 Aug | ID: <strong>2039766985</strong></p>
             </div>
             <div class="btn-group">
                 <a href="https://www.google.com/maps/search/?api=1&query=The+Corner+London+City%2C+42+Adler+Street%2C+London+E1+1EE" target="_blank" class="btn-action btn-map">📍 Map</a>
@@ -385,21 +455,12 @@
         <div class="doc-card">
             <div class="doc-info">
                 <h3>🏨 Leg 2: Travelodge City</h3>
-                <p>18–22 Aug (4 Nights) | Ref: <strong>222953483</strong></p>
+                <p>18–22 Aug | Ref: <strong>222953483</strong></p>
             </div>
             <div class="btn-group">
                 <a href="https://www.google.com/maps/search/?api=1&query=Travelodge+London+City%2C+20+Middlesex+St%2C+London+E1+7EX" target="_blank" class="btn-action btn-map">📍 Map</a>
                 <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">Invoice</a>
             </div>
-        </div>
-
-        <!-- OFFICE -->
-        <div class="doc-card">
-            <div class="doc-info">
-                <h3>💼 Office Base: Aldgate Tower</h3>
-                <p>2 Leman Street, London E1 8FA</p>
-            </div>
-            <a href="https://www.google.com/maps/search/?api=1&query=Aldgate+Tower%2C+2+Leman+Street%2C+London+E1+8FA" target="_blank" class="btn-action btn-map">📍 Map</a>
         </div>
 
     </div>
@@ -477,6 +538,7 @@
         </ul>
         <div class="map-buttons">
             <a href="https://www.google.com/maps/search/?api=1&query=London+Eye%2C+London" target="_blank" class="btn-action btn-map">📍 London Eye</a>
+            <a href="https://www.londoneye.com/tickets-and-prices/" target="_blank" class="btn-action btn-ticket">🎟️ Pre-book Ticket</a>
             <a href="https://www.google.com/maps/search/?api=1&query=The+Hoop+and+Grapes%2C+Aldgate%2C+London" target="_blank" class="btn-action btn-map">📍 Hoop & Grapes Pub</a>
         </div>
         <div class="veg-card">
@@ -505,6 +567,7 @@
         </ul>
         <div class="map-buttons">
             <a href="https://www.google.com/maps/search/?api=1&query=Horizon+22%2C+22+Bishopsgate%2C+London" target="_blank" class="btn-action btn-map">📍 Horizon 22</a>
+            <a href="https://horizon22.co.uk/" target="_blank" class="btn-action btn-ticket">🎟️ Free Pass Link</a>
             <a href="https://www.google.com/maps/search/?api=1&query=Spitalfields+Market%2C+London" target="_blank" class="btn-action btn-map">📍 Spitalfields Market</a>
         </div>
         <div class="veg-card">
@@ -553,7 +616,7 @@
         </div>
         <ul class="activities">
             <li><strong>Daytime:</strong> Work at Aldgate Tower.</li>
-            <li><strong>5:30 PM:</strong> Take Uber Boat / Thames Clipper from Tower Pier down the river to Greenwich.</li>
+            <li><strong>5:30 PM:</strong> Take Uber Boat / Thames Clipper from Tower Pier down the river to Greenwich (Tap with IDFC Card).</li>
             <li>See Cutty Sark, Greenwich Park, and view London skyline from the Royal Observatory.</li>
         </ul>
         <div class="map-buttons">
