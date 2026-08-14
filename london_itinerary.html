@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>London Trip 2026 | Abhishek Gupta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-dark: #090d16;
+            --card-bg: rgba(18, 26, 43, 0.85);
+            --card-border: rgba(255, 255, 255, 0.1);
+            --accent-cyan: #38bdf8;
+            --accent-purple: #818cf8;
+            --accent-green: #34d399;
+            --accent-amber: #fbbf24;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+            --glass-glow: 0 8px 32px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', -apple-system, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 10% 10%, rgba(56, 189, 248, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.12) 0%, transparent 40%);
+            background-attachment: fixed;
+            color: var(--text-main);
+            padding: 16px 12px 40px 12px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, rgba(30, 41, 59, 0.9), rgba(15, 23, 42, 0.95));
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(16px);
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 16px;
+            box-shadow: var(--glass-glow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple), var(--accent-green));
+        }
+
+        .subtitle {
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-top: 2px;
+            margin-bottom: 4px;
+        }
+
+        .traveler-tag {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* QUICK STATS & DOCS VAULT */
+        .section-title {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 20px 0 10px 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .doc-vault {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(12px);
+        }
+
+        .doc-info h3 {
+            font-size: 0.9rem;
+            color: #ffffff;
+            font-weight: 700;
+        }
+
+        .doc-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin-top: 2px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 6px;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 12px;
+            border-radius: 10px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-map {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .btn-doc {
+            background: rgba(129, 140, 248, 0.15);
+            color: var(--accent-purple);
+            border: 1px solid rgba(129, 140, 248, 0.3);
+        }
+
+        .btn-action:active {
+            transform: scale(0.96);
+        }
+
+        /* TRANSIT TIPS BOX */
+        .transit-box {
+            background: rgba(251, 191, 36, 0.08);
+            border: 1px solid rgba(251, 191, 36, 0.25);
+            border-radius: 16px;
+            padding: 14px;
+            margin-bottom: 20px;
+            font-size: 0.82rem;
+            color: #fef08a;
+            line-height: 1.4;
+        }
+
+        .transit-box strong {
+            color: var(--accent-amber);
+            display: block;
+            margin-bottom: 4px;
+            font-size: 0.88rem;
+        }
+
+        /* FILTER TABS */
+        .filter-bar {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.80rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+
+        .filter-btn.active {
+            background: var(--accent-cyan);
+            color: var(--bg-dark);
+            border-color: var(--accent-cyan);
+            font-weight: 700;
+        }
+
+        /* DAY CARDS */
+        .day-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 18px;
+            padding: 18px;
+            margin-bottom: 16px;
+            backdrop-filter: blur(12px);
+        }
+
+        .day-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            gap: 8px;
+        }
+
+        .day-title {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #ffffff;
+        }
+
+        .badge {
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 0.70rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .badge-office {
+            background: rgba(56, 189, 248, 0.15);
+            color: var(--accent-cyan);
+            border: 1px solid rgba(56, 189, 248, 0.3);
+        }
+
+        .badge-leisure {
+            background: rgba(52, 211, 153, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(52, 211, 153, 0.3);
+        }
+
+        .badge-travel {
+            background: rgba(251, 191, 36, 0.15);
+            color: var(--accent-amber);
+            border: 1px solid rgba(251, 191, 36, 0.3);
+        }
+
+        ul.activities {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 12px;
+        }
+
+        ul.activities li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            line-height: 1.4;
+        }
+
+        ul.activities li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+            font-size: 0.75rem;
+        }
+
+        .map-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        /* VEG RECOMMENDATION */
+        .veg-card {
+            background: rgba(52, 211, 153, 0.06);
+            border: 1px solid rgba(52, 211, 153, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+        }
+
+        .veg-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: var(--accent-green);
+            font-weight: 700;
+            font-size: 0.82rem;
+            margin-bottom: 4px;
+        }
+
+        .veg-desc {
+            font-size: 0.78rem;
+            color: #a7f3d0;
+            line-height: 1.35;
+        }
+
+        /* CHECKLIST */
+        .checklist {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .check-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 10px 14px;
+            border-radius: 10px;
+            font-size: 0.82rem;
+            color: #e2e8f0;
+        }
+
+        .check-item input {
+            accent-color: var(--accent-purple);
+            width: 16px;
+            height: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <div class="subtitle">Master Travel Itinerary</div>
+        <h1>London Business & Holiday</h1>
+        <div class="traveler-tag">👤 Abhishek Gupta | 📅 15 – 23 August 2026</div>
+    </header>
+
+    <!-- DOCUMENTS VAULT -->
+    <div class="section-title">📂 Document Vault</div>
+    <div class="doc-vault">
+        
+        <!-- MASTER MERGED PDF -->
+        <div class="doc-card" style="border-color: rgba(129, 140, 248, 0.4); background: rgba(129, 140, 248, 0.08);">
+            <div class="doc-info">
+                <h3>📄 Master Travel PDF</h3>
+                <p>All Tickets & Booking Receipts</p>
+            </div>
+            <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">View All PDF Docs</a>
+        </div>
+
+        <!-- FLIGHTS -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>✈️ Gulf Air Flights</h3>
+                <p>PNR: <strong>KBFQXS</strong> | Ref: EMT168795171</p>
+                <p>BLR ↔ BAH ↔ LHR (Veg Meals Confirmed)</p>
+            </div>
+            <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">Flight PDF</a>
+        </div>
+
+        <!-- HOTEL 1 -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🏨 Leg 1: The Corner City</h3>
+                <p>16–18 Aug (2 Nights) | ID: <strong>2039766985</strong></p>
+            </div>
+            <div class="btn-group">
+                <a href="https://www.google.com/maps/search/?api=1&query=The+Corner+London+City%2C+42+Adler+Street%2C+London+E1+1EE" target="_blank" class="btn-action btn-map">📍 Map</a>
+                <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">Receipt</a>
+            </div>
+        </div>
+
+        <!-- HOTEL 2 -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>🏨 Leg 2: Travelodge City</h3>
+                <p>18–22 Aug (4 Nights) | Ref: <strong>222953483</strong></p>
+            </div>
+            <div class="btn-group">
+                <a href="https://www.google.com/maps/search/?api=1&query=Travelodge+London+City%2C+20+Middlesex+St%2C+London+E1+7EX" target="_blank" class="btn-action btn-map">📍 Map</a>
+                <a href="london_itinerary_docs.pdf" target="_blank" class="btn-action btn-doc">Invoice</a>
+            </div>
+        </div>
+
+        <!-- OFFICE -->
+        <div class="doc-card">
+            <div class="doc-info">
+                <h3>💼 Office Base: Aldgate Tower</h3>
+                <p>2 Leman Street, London E1 8FA</p>
+            </div>
+            <a href="https://www.google.com/maps/search/?api=1&query=Aldgate+Tower%2C+2+Leman+Street%2C+London+E1+8FA" target="_blank" class="btn-action btn-map">📍 Map</a>
+        </div>
+
+    </div>
+
+    <!-- TRANSIT CHEAT-SHEET -->
+    <div class="transit-box">
+        <strong>💳 Local Transport Cheat-Sheet (IDFC WOW Card)</strong>
+        • Use your contactless <strong>IDFC WOW Credit Card</strong> for zero forex markup.<br>
+        • Tap in & out on Elizabeth Line, Tube, & Buses. Daily cap is ~£8.50–£9.00.<br>
+        • ⚠️ <strong>Important:</strong> Always tap in and out with the <em>same physical card or same device (Apple/Google Pay)</em> to avoid penalty charges!
+    </div>
+
+    <!-- DAY FILTER -->
+    <div class="filter-bar">
+        <button class="filter-btn active" onclick="filterDays('all')">All Days</button>
+        <button class="filter-btn" onclick="filterDays('office')">Office Days</button>
+        <button class="filter-btn" onclick="filterDays('leisure')">Leisure Days</button>
+    </div>
+
+    <!-- DAY 0 -->
+    <div class="day-card" data-category="leisure">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Sat, 15 Aug: Departure</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">BLR Terminal 2 $\rightarrow$ BAH</div>
+            </div>
+            <span class="badge badge-travel">Flight</span>
+        </div>
+        <ul class="activities">
+            <li><strong>22:20:</strong> Depart Bengaluru (BLR) on Gulf Air GF-281.</li>
+            <li>Arrive in Bahrain at 00:30 AM (16 Aug) for quick connection.</li>
+        </ul>
+    </div>
+
+    <!-- DAY 1 -->
+    <div class="day-card" data-category="leisure">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Sun, 16 Aug: Arrival & South Bank</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Check-in Leg 1 (The Corner)</div>
+            </div>
+            <span class="badge badge-leisure">Arrival</span>
+        </div>
+        <ul class="activities">
+            <li><strong>06:55 AM:</strong> Land at Heathrow Terminal 4. Take Elizabeth Line to Liverpool St / Whitechapel.</li>
+            <li>Drop bags at <em>The Corner London City</em>. Check-in is after 3:00 PM.</li>
+            <li>Walk down Leman St past Tower of London & cross Tower Bridge as city lights turn on.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Heathrow+Terminal+4" target="_blank" class="btn-action btn-map">📍 Heathrow T4</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Tower+Bridge%2C+London" target="_blank" class="btn-action btn-map">📍 Tower Bridge</a>
+        </div>
+        <div class="veg-card">
+            <div class="veg-header">
+                <span>🌱 Recommended Dinner: Mallow Borough Market</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Mallow+Borough+Market%2C+London" target="_blank" class="btn-action btn-map" style="padding:2px 6px; font-size:0.70rem;">Map</a>
+            </div>
+            <div class="veg-desc">100% plant-based restaurant featuring seasonal dim sum, fresh market bowls, and artisan desserts.</div>
+        </div>
+    </div>
+
+    <!-- DAY 2 -->
+    <div class="day-card" data-category="office">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Mon, 17 Aug: Office & London Eye</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Aldgate Tower (Company Sponsored)</div>
+            </div>
+            <span class="badge badge-office">Office</span>
+        </div>
+        <ul class="activities">
+            <li><strong>Daytime:</strong> Work at Aldgate Tower Office. Lunch & dinner catered by company.</li>
+            <li><strong>5:30 PM:</strong> District Line from Aldgate East to Westminster Station (~12 mins).</li>
+            <li>Step out directly under Big Ben & Parliament, walk across Westminster Bridge to London Eye.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=London+Eye%2C+London" target="_blank" class="btn-action btn-map">📍 London Eye</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=The+Hoop+and+Grapes%2C+Aldgate%2C+London" target="_blank" class="btn-action btn-map">📍 Hoop & Grapes Pub</a>
+        </div>
+        <div class="veg-card">
+            <div class="veg-header">
+                <span>🌱 Pure Veg Dinner: Govinda's Soho</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Govindas+Soho%2C+London" target="_blank" class="btn-action btn-map" style="padding:2px 6px; font-size:0.70rem;">Map</a>
+            </div>
+            <div class="veg-desc">Pure vegetarian ISKCON restaurant near Oxford Street serving authentic North/South Indian thalis.</div>
+        </div>
+    </div>
+
+    <!-- DAY 3 -->
+    <div class="day-card" data-category="office">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Tue, 18 Aug: Move Hotel & Horizon 22</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Check-in Leg 2 (Travelodge City)</div>
+            </div>
+            <span class="badge badge-office">Office</span>
+        </div>
+        <ul class="activities">
+            <li><strong>8:30 AM:</strong> Check out of <em>The Corner</em>. Walk 3 mins to drop bags at <em>Travelodge London City</em>.</li>
+            <li><strong>Daytime:</strong> Work at Aldgate Tower. *(Company covers food up to £40 per diem)*</li>
+            <li><strong>5:30 PM:</strong> Walk 10 mins to Horizon 22 (Europe's highest free viewing platform) or Sky Garden.</li>
+            <li>Wander Victorian Leadenhall Market and explore street art around Spitalfields & Brick Lane.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Horizon+22%2C+22+Bishopsgate%2C+London" target="_blank" class="btn-action btn-map">📍 Horizon 22</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Spitalfields+Market%2C+London" target="_blank" class="btn-action btn-map">📍 Spitalfields Market</a>
+        </div>
+        <div class="veg-card">
+            <div class="veg-header">
+                <span>🌱 Dinner Pick: Dishoom Shoreditch</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Dishoom+Shoreditch%2C+London" target="_blank" class="btn-action btn-map" style="padding:2px 6px; font-size:0.70rem;">Map</a>
+            </div>
+            <div class="veg-desc">Buzzy Bombay-style café featuring House Black Daal, Okra Fries, Mattar Paneer, and Chilli Cheese Toast.</div>
+        </div>
+    </div>
+
+    <!-- DAY 4 -->
+    <div class="day-card" data-category="office">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Wed, 19 Aug: West End & Covent Garden</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Work + Evening Sightseeing</div>
+            </div>
+            <span class="badge badge-office">Office</span>
+        </div>
+        <ul class="activities">
+            <li><strong>Daytime:</strong> Work at Aldgate Tower. Lunch walk to historic Wilton's Music Hall.</li>
+            <li><strong>5:30 PM:</strong> Head to Piccadilly Circus, Leicester Square, and watch street performers in Covent Garden.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Covent+Garden+Market%2C+London" target="_blank" class="btn-action btn-map">📍 Covent Garden</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Piccadilly+Circus%2C+London" target="_blank" class="btn-action btn-map">📍 Piccadilly Circus</a>
+        </div>
+        <div class="veg-card">
+            <div class="veg-header">
+                <span>🌱 Veg Dinner: Mildreds Covent Garden</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=Mildreds+Covent+Garden%2C+London" target="_blank" class="btn-action btn-map" style="padding:2px 6px; font-size:0.70rem;">Map</a>
+            </div>
+            <div class="veg-desc">100% plant-based global fusion restaurant serving Sri Lankan curries, halloumi-style skewers, and burgers.</div>
+        </div>
+    </div>
+
+    <!-- DAY 5 -->
+    <div class="day-card" data-category="office">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Thu, 20 Aug: Greenwich River Cruise</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Work + Evening Sightseeing</div>
+            </div>
+            <span class="badge badge-office">Office</span>
+        </div>
+        <ul class="activities">
+            <li><strong>Daytime:</strong> Work at Aldgate Tower.</li>
+            <li><strong>5:30 PM:</strong> Take Uber Boat / Thames Clipper from Tower Pier down the river to Greenwich.</li>
+            <li>See Cutty Sark, Greenwich Park, and view London skyline from the Royal Observatory.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Cutty+Sark%2C+Greenwich%2C+London" target="_blank" class="btn-action btn-map">📍 Cutty Sark</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Royal+Observatory+Greenwich%2C+London" target="_blank" class="btn-action btn-map">📍 Royal Observatory</a>
+        </div>
+        <div class="veg-card">
+            <div class="veg-header">
+                <span>🌱 Pure Veg Dinner: NK Arya Bhavan</span>
+                <a href="https://www.google.com/maps/search/?api=1&query=NK+Arya+Bhavan%2C+Greenwich%2C+London" target="_blank" class="btn-action btn-map" style="padding:2px 6px; font-size:0.70rem;">Map</a>
+            </div>
+            <div class="veg-desc">Pure vegetarian South Indian restaurant serving Masala Dosas, Idli-Vada platters, and filter coffee.</div>
+        </div>
+    </div>
+
+    <!-- DAY 6 -->
+    <div class="day-card" data-category="leisure">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Fri, 21 Aug: Harrods & Souvenir Shopping</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">Full Leisure Day</div>
+            </div>
+            <span class="badge badge-leisure">Leisure</span>
+        </div>
+        <ul class="activities">
+            <li><strong>Morning:</strong> Visit Harrods in Knightsbridge to explore luxury food halls and tea selections.</li>
+            <li><strong>Afternoon:</strong> Walk Regent Street & Oxford Street. Stop at Fortnum & Mason (Piccadilly) and Hamleys.</li>
+            <li><strong>Evening:</strong> Farewell dinner and night stroll along Bankside promenade.</li>
+        </ul>
+        <div class="map-buttons">
+            <a href="https://www.google.com/maps/search/?api=1&query=Harrods%2C+Knightsbridge%2C+London" target="_blank" class="btn-action btn-map">📍 Harrods</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Fortnum+%26+Mason%2C+Piccadilly%2C+London" target="_blank" class="btn-action btn-map">📍 Fortnum & Mason</a>
+        </div>
+    </div>
+
+    <!-- DAY 7 -->
+    <div class="day-card" data-category="leisure">
+        <div class="day-header">
+            <div>
+                <div class="day-title">Sat, 22 Aug: Return Flight</div>
+                <div style="font-size:0.78rem; color:var(--text-muted);">London $\rightarrow$ Bahrain $\rightarrow$ Bengaluru</div>
+            </div>
+            <span class="badge badge-travel">Flight</span>
+        </div>
+        <ul class="activities">
+            <li><strong>06:30 AM:</strong> Check out of Travelodge London City.</li>
+            <li><strong>07:00 AM:</strong> Elizabeth Line from Liverpool Street back to Heathrow Terminal 4.</li>
+            <li><strong>10:00 AM:</strong> Flight GF-2 departs Heathrow for Bahrain (Landing in BLR at 04:55 AM on 23 Aug).</li>
+        </ul>
+    </div>
+
+    <!-- SOUVENIR CHECKLIST -->
+    <div class="section-title">🛍️ Souvenir Shopping List</div>
+    <div class="day-card">
+        <div class="checklist">
+            <label class="check-item"><input type="checkbox"> Fortnum & Mason Tea Tins</label>
+            <label class="check-item"><input type="checkbox"> British Shortbread Biscuits</label>
+            <label class="check-item"><input type="checkbox"> Red Double-Decker Bus Models</label>
+            <label class="check-item"><input type="checkbox"> Paddington Bear Plush</label>
+            <label class="check-item"><input type="checkbox"> London Underground Posters</label>
+            <label class="check-item"><input type="checkbox"> Charbonnel et Walker Truffles</label>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function filterDays(category) {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        event.target.classList.add('active');
+
+        document.querySelectorAll('.day-card').forEach(card => {
+            if (category === 'all' || card.dataset.category === category) {
+                card.style.display = 'block';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
